@@ -1,0 +1,35 @@
+{% extends 'landing/base.html' %}
+
+{% load static %}
+
+{% block myheading %}
+{% include 'landing/navbar.html' %} 
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+	<p>Other Services:  <a href="{% url 'micro-blading' %}">Micro-blading</a> | <a href="{% url 'piercings' %}">Piercings</a> | <a href="{% url 'tattoos' %}">Tattoos</a></p>
+
+    <div class="p-5 mb-4 w3-black rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold w3-opacity">Permanent Make-Up</h1>
+        <p class="col-md-8 fs-4 w3-opacity">For all your PMU needs, all in one place.</p>
+      </div>
+    </div>
+    
+    <div class="w3-panel w3-pale-red">
+      <p>For aftercare please go to the <a class="postlink" href="{% url 'aftercare' %}">aftercare</a> page.</p>
+    </div>
+    
+    {% for p in pmu %}
+    <p>{{ p.description | safe }}</p>
+    {% endfor %}
+</div>
+
+
+{% endblock %} 
+
+{% block footer %}
+{% include 'landing/footer.html' %}
+{% endblock %} 

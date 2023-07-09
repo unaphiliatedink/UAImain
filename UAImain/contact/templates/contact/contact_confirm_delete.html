@@ -1,0 +1,23 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block myheading %}
+{% include 'landing/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <br>
+    <div class="w3-bar w3-padding">
+        <a href="{% url 'dashboard' %}"><button class="w3-btn w3-btn-small w3-round w3-teal">Dashboard</button></a>
+    </div>
+    <br>
+    <form method="post" class="w3-card w3-padding w3-round">
+        {% csrf_token %}
+    
+        <h4>Are you sure you want to delete <span class="w3-text-red">"{{ object }}"</span>?</h4>
+        
+        <input type="submit" value="Confirm" class="w3-btn w3-red w3-round">
+    </form>
+</div>
+{% endblock %}

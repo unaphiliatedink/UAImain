@@ -1,0 +1,39 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+
+{% block myheading %}
+{% include 'landing/navbar.html' %} 
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <br>
+  <h2>UAI Documents</h2>
+  <hr style="border:1px solid black;"/>
+  <table class="w3-table-all w3-hoverable w3-small w3-text-black">
+    <tr>
+      <th>Doc. No.</th>
+      <th>Title</th>
+      <th class="w3-hide-small">Modified</th>
+      <th>Details</th>
+    </tr>
+    
+<!--     {% for contact in contact_leads %}
+    <tr>
+        <td>{{contact.first_name}}</td>
+        <td>{{contact.last_name}}</td>
+        <td class="w3-hide-small">{{contact.message}}</td>
+        <td>
+          <button class="w3-btn w3-btn-small w3-round w3-light-blue">
+            <a href="{% url 'contact_detail' contact.pk %}">view</a>
+          </button>
+        </td>
+    </tr>
+    {% endfor %} -->
+    
+  </table>
+</div>
+
+{% endblock %}

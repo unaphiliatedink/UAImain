@@ -1,0 +1,29 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+
+{% block myheading %}
+{% include 'landing/navbar.html' %} 
+{% endblock %}
+
+
+{% block content %}
+
+<!-- Projects -->
+<div id="projects" class="w3-container w3-padding-32">
+	<h2 class="w3-border-bottom w3-border-light-grey w3-padding-16 w3-serif">Services</h2>
+</div>
+
+<div class="w3-row-padding">
+	{% for service in service_items %}
+	<div class="w3-col l3 m6 w3-margin-bottom">
+		<div class="w3-display-container">
+			<div class="w3-display-topleft w3-black w3-padding">{{ service.service_name }}</div>
+			<img src="/w3images/house5.jpg" alt="House" style="width:100%">
+		</div>
+		<p>{{ service.summary }}</p>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock %}

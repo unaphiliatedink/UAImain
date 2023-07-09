@@ -1,0 +1,15 @@
+.dash-link {
+	text-decoration: none;
+    list-style: none;
+}
+
+.hr-line {
+	height: 5px;
+    background: black;
+
+}
+
+.form-label {
+	color: black;
+	text-align: left;
+}

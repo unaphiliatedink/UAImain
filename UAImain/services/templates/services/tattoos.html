@@ -1,0 +1,42 @@
+{% extends 'landing/base.html' %}
+
+{% load static %}
+
+{% block myheading %}
+{% include 'landing/navbar.html' %} 
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+	<p>Other Services:  <a href="{% url 'micro-blading' %}">Micro-blading</a> | <a href="{% url 'piercings' %}">Piercings</a> | <a href="{% url 'pmu' %}">Permanent Make Up</a></p>
+
+    <div class="p-5 mb-4 w3-black rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold w3-opacity">Tattoos</h1>
+        <p class="col-md-8 fs-4 w3-opacity">For all your tattoo needs, all in one place.</p>
+      </div>
+    </div>
+    
+    <div class="w3-panel w3-pale-red">
+      <p>For aftercare please go to the <a class="postlink" href="{% url 'aftercare' %}">aftercare</a> page.</p>
+    </div>
+	
+    {% for tat in tattoo %}
+    <p>{{ tat.description | safe }}</p>
+    {% endfor %}
+	
+    <div class="w3-row-padding">
+        <h3 class="w3-wide w3-serif">Artists</h3>
+        <hr style="border: 1px black solid"/>
+        <div class="w3-col s4"><img src="{% static 'images/defaultuser.png' %}"><p>Primary Artist</p></div>
+        <div class="w3-col s4"><img src="{% static 'images/defaultuser.png' %}"><p>Secondary Artist</p></div>
+        <div class="w3-col s4"><img src="{% static 'images/defaultuser.png' %}"><p>Guest Artist</p></div>
+    </div>
+</div>
+
+{% endblock %} 
+
+{% block footer %}
+{% include 'landing/footer.html' %}
+{% endblock %} 

@@ -1,0 +1,212 @@
+{% extends 'landing/base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block myheading %}
+{% include 'landing/navbar.html' %} 
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+<br>
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col l2 s12">
+      <nav class="w3-col l2 s12 w3-bar-block w3-light-grey w3-padding" style="width:auto;height:50vh;">
+        <button class="w3-bar-item w3-button tablink" onclick="openPanel(event, 'Announcements')">Announcements</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openPanel(event, 'Appointments')">Appointments</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openPanel(event, 'Customers')">Customers</button>
+		<button class="w3-bar-item w3-button tablink" onclick="openPanel(event, 'Documents')">Documents</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openPanel(event, 'Leads')">Leads</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openPanel(event, 'Settings')">Settings</button>
+      </nav>
+    </div>
+    
+    <!-- Right Column -->
+    <div class="w3-col l9 s12 w3-dark-grey w3-center">
+      <div class="w3-padding w3-black">Unaphiliated Ink Dashboard</div>
+
+      <div id="Announcements" class="w3-container panel" style="display:none">
+        <div class="w3-display-container w3-padding">
+        <br>
+          <div class="w3-bar">
+            <div class="w3-display-left"><h2>Announcements<h2></div>
+            <div class="w3-display-right">
+              <button class="w3-button w3-circle w3-teal" onclick="document.getElementById('id01').style.display='block'">+</button>
+              
+            </div>
+          </div>
+        </div>
+        <hr/>
+
+          <div id="id01" class="w3-modal">
+            <div class="w3-modal-content">
+              <header class="w3-container w3-teal"> 
+                <span onclick="document.getElementById('id01').style.display='none'" 
+                class="w3-button w3-display-topright">&times;</span>
+                <h2>Add New Announcement</h2>
+              </header>
+              <div class="w3-container">
+                <form method="post" class="loginfrm">
+                  {% csrf_token %}
+                  {{form | crispy}}
+                  <button type="submit" class="w3-btn w3-round w3-black">Submit</button>
+                </form>
+                <br>
+              </div>
+              <footer class="w3-container w3-teal">
+                <small>* All input fields are required.</small><br>
+                <small>ACTIVE status displays message on front page.</small><br>
+                <small>DISABLED status removes message from front page.</small>
+              </footer>
+            </div>
+            <br>
+          </div>
+
+        <div class="w3-container">
+
+          <table class="w3-table-all w3-hoverable w3-small w3-text-black">
+            <tr>
+              <th>Title</th>
+              <th class="w3-hide-small">Message</th>
+              <th>Status</th>
+              <th>Details</th>
+            </tr>
+            {% for a in announce %}
+            
+            <tr>
+                <td>{{a.title}}</td>
+                <td class="w3-hide-small">{{a.message}}</td>
+                {% if a.status == 'DISABLED' %}
+                <td><span class="w3-badge w3-blue">{{a.status}}</span></td>
+                {% else %}
+                <td><span class="w3-badge w3-red">{{a.status}}</span></td>
+                {% endif %}
+                <td>
+                  <button class="w3-btn w3-btn-small w3-round w3-light-blue">
+                    <a href="{% url 'announcement_detail' a.pk %}">view</a>
+                  </button>
+                </td>
+            </tr>
+            
+            {% endfor %}
+          </table>
+        </div>
+        
+        <br>
+        <br>
+      </div>
+
+      <div id="Appointments" class="w3-container panel" style="display:none">
+        <h2 class="w3-left-align">Appointments</h2>
+        <hr/>
+        <p>Appointment content coming soon</p> 
+
+      </div>
+
+      <div id="Customers" class="w3-container panel" style="display:none">
+        <h2 class="w3-left-align">Customers</h2>
+        <hr/>
+        <p>Customer content coming soon</p>
+
+      </div>
+	  
+	  <!--Documents Panel Section-->
+      <div id="Documents" class="w3-container panel" style="display:none">
+        <h2 class="w3-left-align">Documents</h2>
+        <hr/>
+        <p>PDF document listing for all services</p>
+		<table class="w3-table-all w3-hoverable w3-small w3-text-black">
+			<tr>
+			  <th>Doc. No.</th>
+			  <th>Title</th>
+			  <th class="w3-hide-small">Modified</th>
+			  <th>Details</th>
+			</tr>
+
+			<!--     {% for contact in contact_leads %}
+			<tr>
+				<td>{{contact.first_name}}</td>
+				<td>{{contact.last_name}}</td>
+				<td class="w3-hide-small">{{contact.message}}</td>
+				<td>
+				  <button class="w3-btn w3-btn-small w3-round w3-light-blue">
+					<a href="{% url 'contact_detail' contact.pk %}">view</a>
+				  </button>
+				</td>
+			</tr>
+			{% endfor %} -->
+
+		</table>
+		<br>
+		<br>
+      </div>
+	  <!--END Documents Panel Section-->
+
+      <!--Leads Panel Section-->
+      <div id="Leads" class="w3-container panel" style="display:none">
+        <h2 class="w3-left-align">Leads</h2>
+        <hr/>
+        <div class="w3-container">
+
+          <table class="w3-table-all w3-hoverable w3-small w3-text-black">
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th class="w3-hide-small">Message</th>
+              <th>Details</th>
+            </tr>
+            
+            {% for contact in contact_leads %}
+            <tr>
+                <td>{{contact.first_name}}</td>
+                <td>{{contact.last_name}}</td>
+                <td class="w3-hide-small">{{contact.message}}</td>
+                <td>
+                  <button class="w3-btn w3-btn-small w3-round w3-light-blue">
+                    <a href="{% url 'contact_detail' contact.pk %}">view</a>
+                  </button>
+                </td>
+            </tr>
+            {% endfor %}
+            
+          </table>
+        </div>
+        <br>
+        <br>
+      </div>
+      
+      <div id="Settings" class="w3-container panel" style="display:none">
+        <h2 class="w3-left-align">Settings</h2>
+        <hr/>
+        <p>Settings content coming soon</p>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+function openPanel(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("panel");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", ""); 
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+</script>
+
+{% endblock %} 
+
+{% block footer %}
+{% include 'landing/footer.html' %}
+{% endblock %} 

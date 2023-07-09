@@ -1,0 +1,60 @@
+{% extends 'landing/base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block myheading %}
+{% include 'landing/navbar.html' %} 
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<br>
+<div class="w3-bar">
+    <a href="{% url 'dashboard' %}"><button class="w3-btn w3-btn-small w3-round w3-teal">Dashboard</button></a>
+</div>
+<br>
+    <div class="w3-row-padding">
+        <h3 class="w3-panel w3-light-blue w3-padding">Lead - Customer Message Details</h3>
+        
+        <div class="w3-col l8 s12 w3-card">
+            <header class=" w3-light-grey">
+              <h3>{{contact.first_name}} {{contact.last_name}}</h3>
+            </header>
+            <div class="w3-container">
+              <p><small><em>Posted: {{contact.created_on}}</em></small></p>
+              <hr style="border: 1px solid black;">
+              <img src="{% static 'images/defaultuser.png' %}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+              <p>{{ contact.message }}</p><br>
+            </div>
+            
+            <div class="w3-bar w3-light-grey w3-container-fluid">
+                <small>
+                <div class="w3-left w3-padding">{{ contact.phone }}</div>
+                <div class="w3-right w3-padding">{{ contact.email }}</div>
+                </small>
+            </div>
+            
+        </div>
+        
+
+        <div class="w3-col s12 l3 w3-card w3-padding w3-round w3-light-gray w3-margin">
+            <h4>Actions</h4>
+            <hr style="border: 1px solid black;">
+			<div class="w3-bar w3-padding">
+              <a href="mailto:{{ contact.email }}" class="dash-link"><button class="w3-btn w3-round w3-black">Email</button></a>
+              <a href="tel:{{ contact.phone }}" class="dash-link"><button class="w3-btn w3-round w3-teal">Call</button></a>
+              <a href="{% url 'contact_delete' object.pk %}" class="dash-link"><button class="w3-btn w3-round w3-red">Delete</button></a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% include 'landing/footer.html' %}
+{% endblock %} 
