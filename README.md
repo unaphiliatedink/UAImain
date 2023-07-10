@@ -1,5 +1,10 @@
 # Unaphiliated Ink
 
+# Features
+* contact: app to view, edit, and update contacts.
+* services: customizable services sections.
+* dashboard: the control center for all admins.
+
 # Contributing
 
 We welcome contributions from the community. To contribute to this project, please follow these guidelines:
