@@ -1,17 +1,18 @@
 from django.shortcuts import render
 from django.views import View
-
-
+from dashboard.models import Announcement
 
 
 class Index(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'landing/index.html')
+        announce_message = Announcement.objects.all().order_by('-created_on')
         
+        context = {
+            'announce': announce_message,
+        }
         
-class contactPageView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'landing/baseContact.html')        
+    
+        return render(request, 'landing/index.html', context)
+        
  
-#class contactPageView(View):
-#    template_name = 'landing/baseContact.html'    
+

@@ -18,6 +18,13 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('', include('landing.urls')),
-  
+    path('aftercare/', include('aftercare.urls')),
+    path('dashboard/', include('dashboard.urls')),
+    path('documents/', include('documents.urls')),
+    path('contact/', include('contact.urls')),
+    path('services/', include('services.urls')),
+    #path('tinymce/', include('tinymce.urls')),
+    path('djrichtextfield/', include('djrichtextfield.urls'))
 ]
