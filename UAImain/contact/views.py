@@ -28,7 +28,10 @@ class contactPageView(View):
             new_contact = form.save(commit=False)
             #new_contact_us.creator = request.user
             new_contact.save()
-        
+
+            # Send SMS
+            send_sms('4084393454', 'New contact form submission received at https://unaphiliatedink.com.')
+
         context = {
             'contact_us': contact_us,
             'form': form,
@@ -44,6 +47,8 @@ def contact_form(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Contact request submitted successfully.')
+            # Send SMS
+            send_sms('4084393454', 'New contact form submission received.')
             
             return render(request, 'contact/contact_form.html', {'form': contactForm(request.GET)})
         else:
