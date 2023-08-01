@@ -6,7 +6,7 @@ from django.views import View
 from .models import contact
 from .forms import contactForm
 from django.contrib import messages
-from sms import send_sms
+from sms4 import send_sms
 
 class contactPageView(View):
     def get(self, request, *args, **kwargs):
