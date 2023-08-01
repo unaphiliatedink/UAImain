@@ -1,5 +1,7 @@
 # Unaphiliated Ink
 
+To get started with this repository, please go to the [UnaphiliatedInk Wiki](https://github.com/unaphiliatedink/UAImain/wiki)
+
 # Features
 * contact: app to view, edit, and update contacts.
 * services: customizable services sections.
