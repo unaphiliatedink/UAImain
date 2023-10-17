@@ -38,4 +38,4 @@ sms==0.4
 sms4==0.1.0
 sqlparse==0.4.4
 typing_extensions==4.7.1
-urllib3==2.0.4
+urllib3==2.0.7
